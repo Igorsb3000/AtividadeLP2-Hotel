@@ -35,8 +35,8 @@ public class Conta{
     public ArrayList<Consumo> getConsumos() {
         return consumos;
     }
-    public void setConsumos(ArrayList<Consumo> consumos) {
-        this.consumos = consumos;
+    public void setConsumos(Consumo consumo) {
+        consumos.add(consumo);
     }
     
 }
