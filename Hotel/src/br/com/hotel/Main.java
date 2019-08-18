@@ -48,47 +48,65 @@ public class Main {
 
 		int op_menu;
 		Scanner ler = new Scanner(System.in);
-		
-		do{	
-			do{
-				System.out.println("***MENU***");
-				System.out.println("1 - Cadastrar novo hospede");
-				System.out.println("2 - Listar hospedes");
-				System.out.println("3 - Fazer pedido para sua conta");
-				System.out.println("4 - Sair");
-				op_menu = ler.nextInt();
-		
-				switch(op_menu) {
-				case 1:
-					Cadastro.cadastro(aposentos_disponiveis, hotel, hospedagens);
-					break;
-				case 2:
-					System.out.println("***Hospedes do " + hotel.getNome() + "***");
-					for(int i = 0; i< hospedagens.size(); i++) {
-						System.out.println("Nome: " + hospedagens.get(i).getHospede().getNome());
-						System.out.println("Codigo: " + hospedagens.get(i).getHospede().getCodigo());
-						System.out.println();
-					}
-					System.out.println("Digie o cÃ³digo do hospede: ");
-			   		int cod = ler.nextInt();
-			   		System.out.println("Nome: " + hospedagens.get(cod).getConta().getValor());
-			   		break;
-				case 3:
-					Pedido.pedido(hotel, hospedagens);
-					break;
-				default:
-					System.out.println("erro");
-					break;
-				}
-			}while(op_menu != 0 || op_menu == 0);//tive que colocar o break em todos os casos do switch poruqe tava rodando todos os casos sem ele				
-		}while(op_menu <= 4);
-		
-		System.out.println("***Hospedes do " + hotel.getNome() + "***");
-		for(int i = 0; i< hospedagens.size(); i++) {
-			System.out.println("Nome: " + hospedagens.get(i).getHospede().getNome());
-			System.out.println("Codigo: " + hospedagens.get(i).getHospede().getCodigo());
+			
+		do{
 			System.out.println();
-		}
+			System.out.println(" ___________________ ");
+			System.out.println("|  ---------------  |");
+			System.out.println("|  MENU  PRINCIPAL  |");
+			System.out.println("|  ---------------  |");
+			System.out.println("|___________________|");
+			System.out.println();
+			System.out.println("0 - Sair");
+			System.out.println("1 - Cadastrar novo hospede");
+			System.out.println("2 - Listar hospedes");
+			System.out.println("3 - Procurar hospede pelo codigo");
+			System.out.println("4 - Fazer pedido para sua conta");
+			System.out.println("5 - Listar todos os consumos");
+			System.out.println("6 - Pagar conta");
+			op_menu = ler.nextInt();
+		
+			switch(op_menu) {
+			case 1:
+				int codigo = Cadastro.cadastro(aposentos_disponiveis, hotel, hospedagens);
+				System.out.println("Seu codigo é: " + codigo);
+				break;
+			case 2:
+				System.out.println("***Hospedes do " + hotel.getNome() + "***");
+				for(int i = 0; i< hospedagens.size(); i++) {
+					System.out.println("Nome: " + hospedagens.get(i).getHospede().getNome());
+					System.out.println("Codigo: " + hospedagens.get(i).getHospede().getCodigo());
+					System.out.println();
+				}
+		   		break;
+			case 3:
+				System.out.println("Digite o codigo do hospede: ");
+		  		int cod = ler.nextInt();
+		   		for(int i = 0; i < hospedagens.size(); i++) {
+		   			if(hospedagens.get(i).getCodigo() == cod) {
+		   				System.out.println("Hospede: " + hospedagens.get(i).getHospede().getNome());
+		   			}else {
+		   				System.out.println("Hospede nao existe!");
+		   			}
+		   		}
+				break;
+			case 4:
+				Pedido.pedido(hospedagens);
+				break;
+			case 5:
+				ListarConsumos.listarConsumos(hospedagens);
+				break;
+			case 6:
+				PagarConta.pagarConta(hospedagens);
+				break;
+			default:
+				System.out.println();
+				System.out.println("Sistema finalizado com sucesso!");
+				break;
+			}
+		}while(op_menu != 0);//tive que colocar o break em todos os casos do switch porque tava rodando todos os casos sem ele				
+		
+		System.out.println();
 	
 		ler.close();
 	}

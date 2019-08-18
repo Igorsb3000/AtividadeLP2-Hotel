@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Cadastro {
 	private static Scanner ler;
 
-	public static void cadastro(ArrayList <Aposento> aposentos_disponiveis, Hotel hotel, ArrayList <Hospedagem> hospedagens) throws ParseException {
+	public static int cadastro(ArrayList <Aposento> aposentos_disponiveis, Hotel hotel, ArrayList <Hospedagem> hospedagens) throws ParseException {
 		double valor_conta = 0;
 		boolean pago_conta = false;
 		ler = new Scanner(System.in);
@@ -36,23 +36,26 @@ public class Cadastro {
 			dataRecebida = ler.nextLine();
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			dataEntrada = formato.parse(dataRecebida);
-			System.out.println("Data de entrada: " + formato.format(dataEntrada));
+			//System.out.println("Data de entrada: " + formato.format(dataEntrada));
 			System.out.println();
 			
 			System.out.println("Insira a data de saida(dd/mm/yyyy): ");
 			dataRecebida = ler.nextLine();
 			formato = new SimpleDateFormat("dd/MM/yyyy");
 			dataSaida = formato.parse(dataRecebida);
-			System.out.println("Data de saida: " + formato.format(dataSaida));
+			//System.out.println("Data de saida: " + formato.format(dataSaida));
 			
 			codigo_hospede = codigo;
-			
+			System.out.println();
 			System.out.println("Insira seu nome: ");
 			nome = ler.nextLine();
+			System.out.println();
 			System.out.println("Insira seu CPF sem espaco: ");
 			CPF = ler.nextLine();
+			System.out.println();
 			System.out.println("Insira seu RG sem espaco: ");
 			RG = ler.nextLine();
+			System.out.println();
 			System.out.println("Insira seu telefone (DD) 9 9999-9999: ");
 			telefone = ler.nextLine();
 			
@@ -87,9 +90,10 @@ public class Cadastro {
 			
 			Hospedagem hospedagem = new Hospedagem(codigo, dataEntrada, dataSaida, hospede, aposento_escolhido, conta);
 			hospedagens.add(hospedagem);
-				
+			
+			
 		}
-		
+		return codigo;
 	}
 	
 

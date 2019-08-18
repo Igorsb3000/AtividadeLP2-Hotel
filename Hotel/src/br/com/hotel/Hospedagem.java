@@ -11,7 +11,7 @@ public class Hospedagem {
 	private Conta conta;
 	
 	public static boolean checagemDeCodigo(int codigo, ArrayList <Hospedagem> hospedagens) {
-		for(int i = 0; i< hospedagens.size(); i++) {
+		for(int i = 0; i < hospedagens.size(); i++) {
 			if(codigo == hospedagens.get(i).getCodigo()) {
 				return false;
 			}
