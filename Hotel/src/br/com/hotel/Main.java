@@ -64,12 +64,14 @@ public class Main {
 			System.out.println("4 - Fazer pedido para sua conta");
 			System.out.println("5 - Listar todos os consumos");
 			System.out.println("6 - Pagar conta");
+			System.out.println("7 - Realizar serviço de quarto");
+			System.out.println("8 - Agendar serviço de quarto");
 			op_menu = ler.nextInt();
 		
 			switch(op_menu) {
 			case 1:
 				int codigo = Cadastro.cadastro(aposentos_disponiveis, hotel, hospedagens);
-				System.out.println("Seu codigo �: " + codigo);
+				System.out.println("Seu codigo é: " + codigo);
 				break;
 			case 2:
 				System.out.println("***Hospedes do " + hotel.getNome() + "***");
@@ -98,6 +100,12 @@ public class Main {
 				break;
 			case 6:
 				PagarConta.pagarConta(hospedagens);
+				break;
+			case 7:
+				ServicoDeQuarto.realizarServicoQuarto(hospedagens.get(0), camareiro_1);//precisa passar a hospedagem antes de executar a função
+				break;
+			case 8:
+				ServicoDeQuarto.agendarServicoQuarto(hospedagens.get(0), camareiro_1);//precisa passar a hospedagem antes de executar a função
 				break;
 			default:
 				System.out.println();
