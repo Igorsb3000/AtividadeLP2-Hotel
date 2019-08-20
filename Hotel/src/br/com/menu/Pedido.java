@@ -1,11 +1,20 @@
-package br.com.hotel;
-
+package br.com.menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.com.clientes.Consumo;
+import br.com.hotel.Hospedagem;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Pedido {
 	private static Scanner ler;
-	
+	/**
+	 * 
+	 * @param hospedagens
+	 */
 	public static void pedido(ArrayList <Hospedagem> hospedagens) {
     	ler = new Scanner(System.in);
     	Consumo consumo;

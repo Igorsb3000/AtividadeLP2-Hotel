@@ -1,6 +1,4 @@
 package br.com.hotel;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -8,16 +6,25 @@ import java.util.Date;
 import java.util.Scanner;
 //import java.util.ArrayList;
 
-
+import br.com.funcionarios.Camareiro;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class ServicoDeQuarto {
 	private Date data;
 	private Hospedagem hospedagem;
 	private Camareiro camareiro;
 	private boolean realizado;
-	
-	//private LocalDate dataAtual = LocalDate.now();
 	private static Scanner ler;
-	
+	/**
+	 * 
+	 * @param data
+	 * @param hospedagem
+	 * @param camareiro
+	 * @param realizado
+	 */
 	public ServicoDeQuarto(Date data, Hospedagem hospedagem, Camareiro camareiro, boolean realizado) {
 		this.data = data;
 		this.hospedagem = hospedagem;
@@ -54,22 +61,25 @@ public class ServicoDeQuarto {
 	 * Os parametros dos tipos Hospedagem e Camareiro indicam relacao de DEPENDENCIA entre
 	 * ServicoDeQuarto -> Hospedagem & ServicoDeQuarto -> Camareiro.
 	 */
-	
+	/**
+	 * 
+	 * @param hospedagem
+	 * @param camareiro
+	 * @param servicoDeQuarto
+	 */
 	public static void realizarServicoQuarto(Hospedagem hospedagem, Camareiro camareiro, ServicoDeQuarto servicoDeQuarto) {
-		//Date dataAtual = new Date();
 		LocalDate dataAtual_formatada = LocalDate.now();
 		int contador = 0;
-		//boolean servicoRealizado = true;
 		
-		if(hospedagem.getDataEntrada().compareTo(servicoDeQuarto.getData()) < 0 || hospedagem.getDataEntrada().compareTo(servicoDeQuarto.getData()) == 0) {
+		if(hospedagem.getDataEntrada().compareTo(servicoDeQuarto.getData()) <= 0) {
 			contador++;
-			if(hospedagem.getDataSaida().compareTo(servicoDeQuarto.getData()) > 0 || hospedagem.getDataSaida().compareTo(servicoDeQuarto.getData()) == 0 ) {
+			if(hospedagem.getDataSaida().compareTo(servicoDeQuarto.getData()) >= 0) {
 				contador++;
 				if(contador == 2) {
 					servicoDeQuarto.setRealizado(true);
 					System.out.println();
 					System.out.println("Ainda hoje o(a) camareiro(a) " + camareiro.getNome() + " ira ate seu quarto!");
-					//ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataAtual, hospedagem, camareiro, servicoRealizado);
+		
 					if(servicoDeQuarto.getRealizado()) {
 						System.out.println();
 						System.out.println("***Servico Realizado***");
@@ -87,7 +97,12 @@ public class ServicoDeQuarto {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param hospedagem
+	 * @param camareiro
+	 * @throws ParseException
+	 */
 	public static void agendarServicoQuarto(Hospedagem hospedagem, Camareiro camareiro) throws ParseException {
 		ler = new Scanner(System.in);
 		Date dataAtual = new Date();

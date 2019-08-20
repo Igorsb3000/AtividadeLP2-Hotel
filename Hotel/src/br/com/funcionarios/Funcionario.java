@@ -1,10 +1,19 @@
-package br.com.hotel;
-
+package br.com.funcionarios;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Funcionario {
-	private String matricula;
+	protected String matricula;
 	private String nome;
 	private double salario;
-	
+	/**
+	 * 
+	 * @param matricula
+	 * @param nome
+	 * @param salario
+	 */
 	public Funcionario(String matricula, String nome, double salario) {
 		this.matricula = matricula;
 		this.nome = nome;

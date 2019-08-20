@@ -1,14 +1,24 @@
 package br.com.hotel;
-
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Aposento {
 	private int codigo;
 	private double valor;
 	private String descricao;
 	private int numero;
 	
-	public Aposento(){
-		
+	public Aposento(){	
 	}
+	/**
+	 * 
+	 * @param codigo
+	 * @param valor
+	 * @param descricao
+	 * @param numero
+	 */
 	public Aposento(int codigo, double valor, String descricao, int numero) {
 		this.codigo = codigo;
 		this.valor = valor;

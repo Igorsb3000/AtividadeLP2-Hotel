@@ -1,12 +1,22 @@
-package br.com.hotel;
+package br.com.clientes;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Conta{
     private int codigo;
     private double valor;
     private boolean pago;
     private ArrayList<Consumo> consumos;
-    
+    /**
+     * 
+     * @param codigo
+     * @param valor
+     * @param pago
+     * @param consumos
+     */
     public Conta(int codigo, double valor, boolean pago, ArrayList<Consumo> consumos) {
     	this.codigo = codigo;
     	this.valor = valor;

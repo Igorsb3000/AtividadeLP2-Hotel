@@ -1,5 +1,4 @@
-package br.com.hotel;
-
+package br.com.menu;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,9 +7,27 @@ import java.text.ParseException;
 import java.util.Random;
 import java.util.Scanner;
 
+import br.com.clientes.Consumo;
+import br.com.clientes.Conta;
+import br.com.clientes.Hospede;
+import br.com.hotel.Aposento;
+import br.com.hotel.Hospedagem;
+import br.com.hotel.Hotel;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Cadastro {
 	private static Scanner ler;
-
+	/**
+	 * 
+	 * @param aposentos_disponiveis
+	 * @param hotel
+	 * @param hospedagens
+	 * @return
+	 * @throws ParseException
+	 */
 	public static int cadastro(ArrayList <Aposento> aposentos_disponiveis, Hotel hotel, ArrayList <Hospedagem> hospedagens) throws ParseException {
 		double valor_conta = 0;
 		boolean pago_conta = false;

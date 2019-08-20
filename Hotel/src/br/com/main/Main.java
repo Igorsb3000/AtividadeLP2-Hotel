@@ -1,11 +1,32 @@
-package br.com.hotel;
+package br.com.main;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
-import java.text.ParseException; 
 
+import br.com.funcionarios.Camareiro;
+import br.com.funcionarios.Recepcionista;
+import br.com.hotel.Aposento;
+import br.com.hotel.Hospedagem;
+import br.com.hotel.Hotel;
+import br.com.hotel.ServicoDeQuarto;
+import br.com.menu.Cadastro;
+import br.com.menu.ListarConsumos;
+import br.com.menu.PagarConta;
+import br.com.menu.Pedido;
+
+import java.text.ParseException; 
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Main {
+	/**
+	 * 
+	 * @param args
+	 * @throws ParseException
+	 */
 	public static void main(String[] args) throws ParseException {
 		ArrayList <Hospedagem> hospedagens = new ArrayList<Hospedagem>();
 		

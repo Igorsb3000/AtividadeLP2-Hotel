@@ -1,4 +1,9 @@
-package br.com.hotel;
+package br.com.clientes;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 
 public class Hospede {
 	private int codigo;
@@ -6,7 +11,14 @@ public class Hospede {
 	private String CPF;
 	private String RG;
 	private String telefone;
-	
+	/**
+	 * 
+	 * @param codigo
+	 * @param nome
+	 * @param CPF
+	 * @param RG
+	 * @param telefone
+	 */
 	public Hospede(int codigo, String nome, String CPF, String RG, String telefone) {
 		this.codigo = codigo;
 		this.nome = nome;

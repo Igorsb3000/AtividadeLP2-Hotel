@@ -1,14 +1,27 @@
 package br.com.hotel;
-
 import java.util.ArrayList;
 
+import br.com.funcionarios.Camareiro;
+import br.com.funcionarios.Recepcionista;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Hotel {
     private String nome;
     private String cnpj;
     private ArrayList<Hospedagem> hospedagens;
     private ArrayList<Recepcionista> recepcionistas;
     private ArrayList<Camareiro> camareiros;
-    
+    /**
+     * 
+     * @param nome
+     * @param cnpj
+     * @param hospedagens
+     * @param recepcionistas
+     * @param camareiros
+     */
     public Hotel(String nome, String cnpj, ArrayList<Hospedagem> hospedagens, ArrayList<Recepcionista> recepcionistas, ArrayList<Camareiro> camareiros) {
     	this.nome = nome;
     	this.cnpj = cnpj;

@@ -1,7 +1,15 @@
+
 package br.com.hotel;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.clientes.Conta;
+import br.com.clientes.Hospede;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Hospedagem {
 	private int codigo;
 	private Date dataEntrada;
@@ -11,6 +19,12 @@ public class Hospedagem {
 	private Conta conta;
 	
 	//Checar pra saber se ja existe o codigo, se existir retorna false
+	/**
+	 * 
+	 * @param codigo
+	 * @param hospedagens
+	 * @return
+	 */
 	public static boolean checagemDeCodigo(int codigo, ArrayList <Hospedagem> hospedagens) {
 		for(int i = 0; i < hospedagens.size(); i++) {
 			if(codigo == hospedagens.get(i).getCodigo()) {
@@ -20,6 +34,12 @@ public class Hospedagem {
 		return true;
 	}
 	//Checar se o codigo pertence a algum hospede
+	/**
+	 * 
+	 * @param codigo
+	 * @param hospedagens
+	 * @return
+	 */
 	public static boolean checarExistencia(int codigo, ArrayList <Hospedagem> hospedagens) {
 		for(int i = 0; i < hospedagens.size(); i++) {
 			if(codigo == hospedagens.get(i).getHospede().getCodigo()) {
@@ -28,7 +48,15 @@ public class Hospedagem {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param codigo
+	 * @param dataEntrada
+	 * @param dataSaida
+	 * @param hospede
+	 * @param aposento
+	 * @param conta
+	 */
 	public Hospedagem(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta) {
 		this.codigo = codigo;
 		this.dataEntrada = dataEntrada;

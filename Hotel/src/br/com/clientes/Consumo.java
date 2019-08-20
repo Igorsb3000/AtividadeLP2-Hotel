@@ -1,11 +1,21 @@
-package br.com.hotel;
-
+package br.com.clientes;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class Consumo {
     int codigo;
     String descricao;
     int quantidade;
     double valorUnitario;
-    
+    /**
+     * 
+     * @param codigo
+     * @param descricao
+     * @param quantidade
+     * @param valorUnitario
+     */
     public Consumo(int codigo, String descricao, int quantidade, double valorUnitario) {
     	this.codigo = codigo;
     	this.descricao = descricao;

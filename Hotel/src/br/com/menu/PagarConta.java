@@ -1,11 +1,19 @@
-package br.com.hotel;
-
+package br.com.menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.com.hotel.Hospedagem;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class PagarConta {
 	private static Scanner ler;
-	
+	/**
+	 * 
+	 * @param hospedagens
+	 */
 	public static void pagarConta(ArrayList <Hospedagem> hospedagens) {
 		ler = new Scanner(System.in);
 		String resposta, numero_cartao;
@@ -54,7 +62,7 @@ public class PagarConta {
 			
 			//Remove o hospede
 			hospedagens.remove(aposento);
-			
+						
 		}else {
 			return;
 		}

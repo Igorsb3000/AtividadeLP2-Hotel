@@ -1,14 +1,22 @@
-package br.com.hotel;
-
+package br.com.menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.com.hotel.Hospedagem;
+/**
+ * 
+ * @author Igor Silva & Savio Silva
+ *
+ */
 public class ListarConsumos {
 	private static Scanner ler;
-	
+	/**
+	 * 
+	 * @param hospedagens
+	 */
 	public static void listarConsumos(ArrayList <Hospedagem> hospedagens) {
 		ler = new Scanner(System.in);
-		int codigo;
+		int codigo, i;
 		double valor_conta = 0;
 		boolean check = false;
 		
@@ -19,9 +27,12 @@ public class ListarConsumos {
 		check = Hospedagem. checarExistencia(codigo, hospedagens);
 		
 		if(check) {
-			for(int i = 0; i < hospedagens.size(); i++) {
-				if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
-					System.out.println("CODIGO ENCONTRADO: " + hospedagens.get(i).getHospede().getCodigo());
+			for(i = 0; i < hospedagens.size(); i++) {
+				//System.out.println("size: " + hospedagens.size());
+				//System.out.println("CODIGO ENCONTRADO: " + hospedagens.get(i).getHospede().getCodigo());
+				
+				if(hospedagens.get(i).getHospede().getCodigo() == codigo ) {
+					
 					for(int j = 0; j < hospedagens.get(i).getConta().getConsumos().size(); j++) {
 						System.out.println("Codigo do Produto: " + hospedagens.get(i).getConta().getConsumos().get(j).getCodigo());
 						System.out.println("Descricao: " + hospedagens.get(i).getConta().getConsumos().get(j).getDescricao());
@@ -33,11 +44,7 @@ public class ListarConsumos {
 					System.out.println("Total a pagar: R$ " + valor_conta);
 					return;
 							
-				}else {
-					System.out.println("Hospede nao existe ou nao consumiu nada");
-					return;
 				}
-				
 			}	
 		}
 		return;
