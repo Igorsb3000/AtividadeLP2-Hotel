@@ -26,7 +26,6 @@ public class PagarConta {
 						System.out.println();
 						
 					}
-					
 				}
 			}
 			valor_aposento = hospedagens.get(aposento).getAposento().getValor();

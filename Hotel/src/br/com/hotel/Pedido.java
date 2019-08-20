@@ -58,9 +58,10 @@ public class Pedido {
     		
     		System.out.println("Digite o codigo do hospede: ");
     		codigo = ler.nextInt();
-    		
-    		//Checando para saber se o codigo existe e é unico
-    		for(int i = 0; i < hospedagens.size(); i++) {
+ 
+    		//Checando para saber se o codigo existe
+    		check = Hospedagem. checarExistencia(codigo, hospedagens);
+    		/*for(int i = 0; i < hospedagens.size(); i++) {
     			if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
     				cont++;
     			}
@@ -69,7 +70,7 @@ public class Pedido {
     			}else {
     				check = true;
     			}
-    		}
+    		}*/
     		
     		if(check) {
 	    		consumo = new Consumo(codigo_produto, descricao, quantidade, valor_unitario);

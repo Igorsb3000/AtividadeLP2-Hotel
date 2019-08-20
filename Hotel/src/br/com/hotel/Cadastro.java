@@ -81,7 +81,6 @@ public class Cadastro {
 			//Remove o aposento escolhido da lista de aposentos disponiveis
 			aposentos_disponiveis.remove(opcao - 1); 
 			
-			
 			codigo_conta = codigo;
 			
 			ArrayList<Consumo> consumos = new ArrayList<Consumo>();
@@ -89,13 +88,9 @@ public class Cadastro {
 			Conta conta = new Conta(codigo_conta, valor_conta, pago_conta, consumos);
 			
 			Hospedagem hospedagem = new Hospedagem(codigo, dataEntrada, dataSaida, hospede, aposento_escolhido, conta);
-			hospedagens.add(hospedagem);
-			
-			
+			hospedagens.add(hospedagem);		
 		}
 		return codigo;
 	}
-	
-
 
 }

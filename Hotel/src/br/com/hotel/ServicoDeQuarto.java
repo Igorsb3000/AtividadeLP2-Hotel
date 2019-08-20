@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class ServicoDeQuarto {
@@ -43,28 +44,59 @@ public class ServicoDeQuarto {
 	 * ServicoDeQuarto -> Hospedagem & ServicoDeQuarto -> Camareiro.
 	 */
 	
-	public static void realizarServicoQuarto(Hospedagem hospedagem, Camareiro camareiro) {
+	public static void realizarServicoQuarto(ArrayList <Hospedagem> hospedagens, ArrayList <Camareiro> camareiro) {
 		if(isRealizado()) {
-			System.out.println("Não existe serviço pendente!");
+			System.out.println("Nao existe servico pendente!");
 		}else {
-			System.out.println("Realizando servico na hospedagem " + hospedagem.getCodigo());
-			System.out.println("Para concluir o serviço digite qualquer tecla e pressione enter.");
+			int codigo, j;
+			System.out.println("Insira o codigo do hospede: ");
+			codigo = ler.nextInt();
+			
+			for(int i = 0; i < hospedagens.size(); i++) {
+				if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
+					j = i;
+				}
+			}
+			Date entrada, saida, dataServico;
+			
+			
+			
+			//System.out.println("Realizando servico na hospedagem " + hospedagens.getCodigo());
+			System.out.println("Para concluir o servico digite qualquer tecla e pressione enter.");
 			String concluir_servico = ler.nextLine();
-			System.out.println("Serviço realizado com sucesso!");
+			System.out.println("Servico realizado com sucesso!");
 			setRealizado(true);
 		}	
 	}
 	
+	
 	public static void agendarServicoQuarto(Hospedagem hospedagem, Camareiro camareiro) throws ParseException {
 		ler = new Scanner(System.in);
+		int contador = 0;
 		String dataRecebida;
-		System.out.println("Realizando servico no aposento " + hospedagem.getCodigo());
-		System.out.println("Insira a data para execução do serviço(dd/mm/yyyy): ");
+		Date dataServico;
+		
+		System.out.println("Insira a data para execucao do servio(dd/mm/yyyy): ");
 		dataRecebida = ler.nextLine();
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");//tentei formatar a data e acabei não conseguindo
-		Date dataServico = formato.parse(dataRecebida);
-		setData(dataServico);
-		System.out.println("No dia " + dataServico + " o camareiro " + camareiro.getNome() + " irá executar o serviço!");
-		setRealizado(false);
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		dataServico = formato.parse(dataRecebida);
+		
+		if(hospedagem.getDataEntrada().compareTo(dataServico) < 0) {
+			contador++;
+			if(hospedagem.getDataSaida().compareTo(dataServico) > 0) {
+				contador++;
+				if(contador == 2) {
+					System.out.println();
+					System.out.println("Servico agendado com sucesso!");
+					System.out.println();
+					System.out.println("No dia " + formato.format(dataServico)+ " o(a) camareiro(a) " + camareiro.getNome() + " ira ate seu quarto!");
+					return;
+				}
+			}
+		}
+		System.out.println("Data invalida!");
+
+		//setRealizado(false);
 	}
+	
 }

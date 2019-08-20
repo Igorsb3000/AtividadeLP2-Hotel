@@ -10,6 +10,7 @@ public class Hospedagem {
 	private Aposento aposento;
 	private Conta conta;
 	
+	//Checar pra saber se ja existe o codigo, se existir retorna false
 	public static boolean checagemDeCodigo(int codigo, ArrayList <Hospedagem> hospedagens) {
 		for(int i = 0; i < hospedagens.size(); i++) {
 			if(codigo == hospedagens.get(i).getCodigo()) {
@@ -17,8 +18,17 @@ public class Hospedagem {
 			}
 		}
 		return true;
-			
 	}
+	//Checar se o codigo pertence a algum hospede
+	public static boolean checarExistencia(int codigo, ArrayList <Hospedagem> hospedagens) {
+		for(int i = 0; i < hospedagens.size(); i++) {
+			if(codigo == hospedagens.get(i).getCodigo()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public Hospedagem(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta) {
 		this.codigo = codigo;
 		this.dataEntrada = dataEntrada;

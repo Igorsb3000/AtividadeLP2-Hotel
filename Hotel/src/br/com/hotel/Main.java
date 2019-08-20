@@ -1,5 +1,6 @@
 package br.com.hotel;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import java.text.ParseException; 
 
@@ -64,14 +65,15 @@ public class Main {
 			System.out.println("4 - Fazer pedido para sua conta");
 			System.out.println("5 - Listar todos os consumos");
 			System.out.println("6 - Pagar conta");
-			System.out.println("7 - Realizar serviço de quarto");
-			System.out.println("8 - Agendar serviço de quarto");
+			System.out.println("7 - Realizar servico de quarto");
+			System.out.println("8 - Agendar servico de quarto");
 			op_menu = ler.nextInt();
 		
 			switch(op_menu) {
 			case 1:
 				int codigo = Cadastro.cadastro(aposentos_disponiveis, hotel, hospedagens);
-				System.out.println("Seu codigo é: " + codigo);
+				System.out.println();
+				System.out.println(">>> Seu Codigo eh: " + codigo +" <<<");
 				break;
 			case 2:
 				System.out.println("***Hospedes do " + hotel.getNome() + "***");
@@ -102,20 +104,34 @@ public class Main {
 				PagarConta.pagarConta(hospedagens);
 				break;
 			case 7:
-				ServicoDeQuarto.realizarServicoQuarto(hospedagens.get(0), camareiro_1);//precisa passar a hospedagem antes de executar a função
+				ServicoDeQuarto.realizarServicoQuarto(hospedagens, camareiros);//precisa passar a hospedagem antes de executar a função
 				break;
 			case 8:
-				ServicoDeQuarto.agendarServicoQuarto(hospedagens.get(0), camareiro_1);//precisa passar a hospedagem antes de executar a função
+				boolean check;
+				System.out.println("Insira o codigo do hospede: ");
+				codigo = ler.nextInt();
+				check = Hospedagem. checarExistencia(codigo, hospedagens);
+				if(check) {
+					Random rnd = new Random();
+					int aleatorio = camareiros.size()-1;
+					for(int i = 0; i< hospedagens.size(); i++) {
+						if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
+							ServicoDeQuarto.agendarServicoQuarto(hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)));
+						}	
+					}
+				}else {
+					System.out.println("Hospede nao existe!");
+				}
+				
 				break;
 			default:
 				System.out.println();
 				System.out.println("Sistema finalizado com sucesso!");
 				break;
 			}
-		}while(op_menu != 0);//tive que colocar o break em todos os casos do switch porque tava rodando todos os casos sem ele				
+		}while(op_menu != 0);
 		
 		System.out.println();
-	
 		ler.close();
 	}
 }
