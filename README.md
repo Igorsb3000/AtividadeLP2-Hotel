@@ -2,7 +2,7 @@
 
 É uma atividade implementada por Igor Silva Bento e Sávio Henrique Silva Araújo para I unidade da disciplina de Linguagem de Programação 2, ministrda pelo Professor André Solino.
 
-# What is it?
+# O que é isso?
 O objetivo desse trabalho é implementar um sistema de hospedagem para um hotel.
 
 ## São atividades do Sistema:
