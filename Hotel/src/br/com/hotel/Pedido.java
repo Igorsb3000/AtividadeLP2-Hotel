@@ -61,16 +61,6 @@ public class Pedido {
  
     		//Checando para saber se o codigo existe
     		check = Hospedagem. checarExistencia(codigo, hospedagens);
-    		/*for(int i = 0; i < hospedagens.size(); i++) {
-    			if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
-    				cont++;
-    			}
-    			if(cont != 1) {
-    				check = false;
-    			}else {
-    				check = true;
-    			}
-    		}*/
     		
     		if(check) {
 	    		consumo = new Consumo(codigo_produto, descricao, quantidade, valor_unitario);

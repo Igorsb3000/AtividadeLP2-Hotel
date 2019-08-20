@@ -22,7 +22,7 @@ public class Hospedagem {
 	//Checar se o codigo pertence a algum hospede
 	public static boolean checarExistencia(int codigo, ArrayList <Hospedagem> hospedagens) {
 		for(int i = 0; i < hospedagens.size(); i++) {
-			if(codigo == hospedagens.get(i).getCodigo()) {
+			if(codigo == hospedagens.get(i).getHospede().getCodigo()) {
 				return true;
 			}
 		}

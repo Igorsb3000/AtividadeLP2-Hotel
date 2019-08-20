@@ -1,5 +1,6 @@
 package br.com.hotel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 import java.text.ParseException; 
@@ -104,16 +105,32 @@ public class Main {
 				PagarConta.pagarConta(hospedagens);
 				break;
 			case 7:
-				ServicoDeQuarto.realizarServicoQuarto(hospedagens, camareiros);//precisa passar a hospedagem antes de executar a função
-				break;
-			case 8:
 				boolean check;
+				Date dataAtual = new Date();
 				System.out.println("Insira o codigo do hospede: ");
 				codigo = ler.nextInt();
 				check = Hospedagem. checarExistencia(codigo, hospedagens);
 				if(check) {
 					Random rnd = new Random();
-					int aleatorio = camareiros.size()-1;
+					int aleatorio = camareiros.size();
+					for(int i = 0; i< hospedagens.size(); i++) {
+						if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
+							ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataAtual, hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)), false);
+							ServicoDeQuarto.realizarServicoQuarto(hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)), servicoDeQuarto);
+						}	
+					}
+				}else {
+					System.out.println("Hospede nao existe!");
+				}
+				
+				break;
+			case 8:
+				System.out.println("Insira o codigo do hospede: ");
+				codigo = ler.nextInt();
+				check = Hospedagem. checarExistencia(codigo, hospedagens);
+				if(check) {
+					Random rnd = new Random();
+					int aleatorio = camareiros.size();
 					for(int i = 0; i< hospedagens.size(); i++) {
 						if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
 							ServicoDeQuarto.agendarServicoQuarto(hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)));

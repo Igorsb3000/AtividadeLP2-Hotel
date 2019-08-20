@@ -68,6 +68,7 @@ public class Cadastro {
 				int j = i+1;
 				System.out.println("Aposento " + j + ": ");
 				System.out.println("Desricao: " + aposentos_disponiveis.get(i).getDescricao());
+				System.out.println("Numero: " + aposentos_disponiveis.get(i).getNumero());
 				System.out.println("Valor da diaria: R$" + aposentos_disponiveis.get(i).getValor());
 				System.out.println();
 			}
