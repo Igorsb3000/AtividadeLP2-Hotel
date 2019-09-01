@@ -9,6 +9,7 @@ public class Aposento {
 	private double valor;
 	private String descricao;
 	private int numero;
+	private int capacidade;
 	
 	public Aposento(){	
 	}
@@ -18,34 +19,43 @@ public class Aposento {
 	 * @param valor
 	 * @param descricao
 	 * @param numero
+	 * @param capacidade
 	 */
-	public Aposento(int codigo, double valor, String descricao, int numero) {
+	public Aposento(int codigo, double valor, String descricao, int numero, int capacidade) {
 		this.codigo = codigo;
 		this.valor = valor;
 		this.descricao = descricao;
 		this.numero = numero;
+		this.capacidade = capacidade;
 	}
 	
-	int getCodigo() {
+	public int getCodigo() {
 		return this.codigo;
 	}
-	double getValor() {
+	public double getValor() {
 		return this.valor;
 	}
-	String getDescricao() {
+	public String getDescricao() {
 		return this.descricao;
 	}
-	int getNumero() {
+	public int getNumero() {
 		return this.numero;
 	}
-	void setCodigo(int codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	void setValor(double valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	void setNumero(int numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+	public int getCapacidade() {
+		return capacidade;
+	}
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
+	}
+	
 
 }

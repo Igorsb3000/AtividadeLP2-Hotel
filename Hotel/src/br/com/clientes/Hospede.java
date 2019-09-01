@@ -11,6 +11,7 @@ public class Hospede {
 	private String CPF;
 	private String RG;
 	private String telefone;
+	private boolean responsavel;
 	/**
 	 * 
 	 * @param codigo
@@ -18,13 +19,15 @@ public class Hospede {
 	 * @param CPF
 	 * @param RG
 	 * @param telefone
+	 * @param responsavel
 	 */
-	public Hospede(int codigo, String nome, String CPF, String RG, String telefone) {
+	public Hospede(int codigo, String nome, String CPF, String RG, String telefone, boolean responsavel) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.CPF = CPF;
 		this.RG = RG;
 		this.telefone = telefone;
+		this.responsavel = responsavel;
 	}
 
 	public int getCodigo() {
@@ -58,5 +61,14 @@ public class Hospede {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
+	public boolean isResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(boolean responsavel) {
+		this.responsavel = responsavel;
+	}
+	
 
 }

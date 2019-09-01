@@ -14,7 +14,7 @@ public class Hospedagem {
 	private int codigo;
 	private Date dataEntrada;
 	private Date dataSaida;
-	private Hospede hospede;
+	private ArrayList <Hospede> hospede;
 	private Aposento aposento;
 	private Conta conta;
 	
@@ -33,6 +33,17 @@ public class Hospedagem {
 		}
 		return true;
 	}
+	
+	//Conferir datas de entrada e saida
+	public static boolean checagemDeAposento() {
+		for(int i = 0; i < hospedagens.size(); i++) {
+			if(codigo == hospedagens.get(i).getCodigo()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	//Checar se o codigo pertence a algum hospede
 	/**
 	 * 
@@ -42,7 +53,7 @@ public class Hospedagem {
 	 */
 	public static boolean checarExistencia(int codigo, ArrayList <Hospedagem> hospedagens) {
 		for(int i = 0; i < hospedagens.size(); i++) {
-			if(codigo == hospedagens.get(i).getHospede().getCodigo()) {
+			if(codigo == hospedagens.get(i).getHospede().get(i).getCodigo()) {
 				return true;
 			}
 		}
@@ -53,11 +64,11 @@ public class Hospedagem {
 	 * @param codigo
 	 * @param dataEntrada
 	 * @param dataSaida
-	 * @param hospede
+	 * @param 
 	 * @param aposento
 	 * @param conta
 	 */
-	public Hospedagem(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta) {
+	public Hospedagem(int codigo, Date dataEntrada, Date dataSaida, ArrayList <Hospede> hospede , Aposento aposento, Conta conta) {
 		this.codigo = codigo;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
@@ -84,11 +95,8 @@ public class Hospedagem {
 	public void setDataSaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
-	public Hospede getHospede() {
+	public ArrayList <Hospede> getHospede() {
 		return hospede;
-	}
-	public void setHospede(Hospede hospede) {
-		this.hospede = hospede;
 	}
 	public Aposento getAposento() {
 		return aposento;

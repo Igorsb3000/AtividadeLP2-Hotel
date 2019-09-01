@@ -57,10 +57,10 @@ public class Main {
 		
 		//Aposentos do Hotel
 		ArrayList <Aposento> aposentos_disponiveis = new ArrayList<Aposento>();
-		Aposento aposento_presidencial = new Aposento(123110, 50000, "Aposento de alto luxo equipado com o melhor da tecnologia e da sofisticacao", 110);
-		Aposento aposento_luxuoso = new Aposento(123103, 10000, "Aposento de alto luxo com vista privilegiada", 103);
-		Aposento aposento_mediano = new Aposento(12389, 1200, "Aposento confortavel com TV e frigobar", 89);
-		Aposento aposento_simples = new Aposento(12345, 600, "Aposento simples com TV e Wifi", 45);
+		Aposento aposento_presidencial = new Aposento(123110, 50000, "Aposento de alto luxo equipado com o melhor da tecnologia e da sofisticacao", 110, 5);
+		Aposento aposento_luxuoso = new Aposento(123103, 10000, "Aposento de alto luxo com vista privilegiada", 103, 4);
+		Aposento aposento_mediano = new Aposento(12389, 1200, "Aposento confortavel com TV e frigobar", 89, 3);
+		Aposento aposento_simples = new Aposento(12345, 600, "Aposento simples com TV e Wifi", 45, 2);
 		aposentos_disponiveis.add(aposento_presidencial);
 		aposentos_disponiveis.add(aposento_luxuoso);
 		aposentos_disponiveis.add(aposento_mediano);
@@ -100,8 +100,8 @@ public class Main {
 			case 2:
 				System.out.println("***Hospedes do " + hotel.getNome() + "***");
 				for(int i = 0; i< hospedagens.size(); i++) {
-					System.out.println("Nome: " + hospedagens.get(i).getHospede().getNome());
-					System.out.println("Codigo: " + hospedagens.get(i).getHospede().getCodigo());
+					System.out.println("Nome: " + hospedagens.get(i).getHospede().get(i).getNome());
+					System.out.println("Codigo: " + hospedagens.get(i).getHospede().get(i).getCodigo());
 					System.out.println();
 				}
 		   		break;
@@ -110,7 +110,7 @@ public class Main {
 		  		int cod = ler.nextInt();
 		   		for(int i = 0; i < hospedagens.size(); i++) {
 		   			if(hospedagens.get(i).getCodigo() == cod) {
-		   				System.out.println("Hospede: " + hospedagens.get(i).getHospede().getNome());
+		   				System.out.println("Hospede: " + hospedagens.get(i).getHospede().get(i).getNome());
 		   			}else {
 		   				System.out.println("Hospede nao existe!");
 		   			}
@@ -135,7 +135,7 @@ public class Main {
 					Random rnd = new Random();
 					int aleatorio = camareiros.size();
 					for(int i = 0; i< hospedagens.size(); i++) {
-						if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
+						if(hospedagens.get(i).getHospede().get(i).getCodigo() == codigo) {
 							ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataAtual, hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)), false);
 							ServicoDeQuarto.realizarServicoQuarto(hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)), servicoDeQuarto);
 						}	
@@ -153,7 +153,7 @@ public class Main {
 					Random rnd = new Random();
 					int aleatorio = camareiros.size();
 					for(int i = 0; i< hospedagens.size(); i++) {
-						if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
+						if(hospedagens.get(i).getHospede().get(i).getCodigo() == codigo) {
 							ServicoDeQuarto.agendarServicoQuarto(hospedagens.get(i), camareiros.get(rnd.nextInt(aleatorio)));
 						}	
 					}

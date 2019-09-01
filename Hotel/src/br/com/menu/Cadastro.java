@@ -30,7 +30,7 @@ public class Cadastro {
 	 */
 	public static int cadastro(ArrayList <Aposento> aposentos_disponiveis, Hotel hotel, ArrayList <Hospedagem> hospedagens) throws ParseException {
 		double valor_conta = 0;
-		boolean pago_conta = false;
+		boolean pago_conta = false, responsavel = false;
 		ler = new Scanner(System.in);
 		Random rnd = new Random();
 		int codigo = rnd.nextInt(100)+1;  //Codigo unico de cada hospede
@@ -76,7 +76,7 @@ public class Cadastro {
 			System.out.println("Insira seu telefone (DD) 9 9999-9999: ");
 			telefone = ler.nextLine();
 			
-			Hospede hospede = new Hospede(codigo_hospede, nome, CPF, RG, telefone);
+			Hospede hospede = new Hospede(codigo_hospede, nome, CPF, RG, telefone, responsavel);
 			
 			System.out.println();
 			System.out.println("***Aposentos Disponiveis*** ");
@@ -85,6 +85,7 @@ public class Cadastro {
 				int j = i+1;
 				System.out.println("Aposento " + j + ": ");
 				System.out.println("Desricao: " + aposentos_disponiveis.get(i).getDescricao());
+				System.out.println("Capacidade: " + aposentos_disponiveis.get(i).getCapacidade());
 				System.out.println("Numero: " + aposentos_disponiveis.get(i).getNumero());
 				System.out.println("Valor da diaria: R$" + aposentos_disponiveis.get(i).getValor());
 				System.out.println();
@@ -96,8 +97,9 @@ public class Cadastro {
 			Aposento aposento_escolhido = new Aposento();
 			aposento_escolhido = aposentos_disponiveis.get(opcao-1);
 			
+			
 			//Remove o aposento escolhido da lista de aposentos disponiveis
-			aposentos_disponiveis.remove(opcao - 1); 
+			//aposentos_disponiveis.remove(opcao - 1); 
 			
 			codigo_conta = codigo;
 			
