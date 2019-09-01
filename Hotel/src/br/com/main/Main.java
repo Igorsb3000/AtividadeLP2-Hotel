@@ -66,7 +66,6 @@ public class Main {
 		aposentos_disponiveis.add(aposento_mediano);
 		aposentos_disponiveis.add(aposento_simples);
 		
-		
 		Hotel hotel = new Hotel("Luxus Hotel", "123456789", hospedagens, recepcionistas, camareiros);
 
 		int op_menu;
