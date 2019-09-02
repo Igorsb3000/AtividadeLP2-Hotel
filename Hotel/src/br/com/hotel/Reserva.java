@@ -10,11 +10,12 @@ import br.com.clientes.Hospede;
  * @author Igor Silva & Savio Silva
  *
  */
-public class Hospedagem {
+public class Reserva {
 	private int codigo;
 	private Date dataEntrada;
 	private Date dataSaida;
-	private ArrayList <Hospede> hospede;
+	private ArrayList<Hospede> hospedes;
+	private Hospede responsavel;
 	private Aposento aposento;
 	private Conta conta;
 	
@@ -22,40 +23,32 @@ public class Hospedagem {
 	/**
 	 * 
 	 * @param codigo
-	 * @param hospedagens
+	 * @param reservas
 	 * @return
 	 */
-	public static boolean checagemDeCodigo(int codigo, ArrayList <Hospedagem> hospedagens) {
-		for(int i = 0; i < hospedagens.size(); i++) {
-			if(codigo == hospedagens.get(i).getCodigo()) {
+	public static boolean checagemDeCodigo(int codigo, ArrayList <Reserva> reservas) {
+		for(int i = 0; i < reservas.size(); i++) {
+			if(codigo == reservas.get(i).getCodigo()) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	//Conferir datas de entrada e saida
-	public static boolean checagemDeAposento() {
-		for(int i = 0; i < hospedagens.size(); i++) {
-			if(codigo == hospedagens.get(i).getCodigo()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	//Checar se o codigo pertence a algum hospede
 	/**
 	 * 
 	 * @param codigo
-	 * @param hospedagens
+	 * @param reservas
 	 * @return
 	 */
-	public static boolean checarExistencia(int codigo, ArrayList <Hospedagem> hospedagens) {
-		for(int i = 0; i < hospedagens.size(); i++) {
-			if(codigo == hospedagens.get(i).getHospede().get(i).getCodigo()) {
-				return true;
+	public static boolean checarExistencia(int codigo, ArrayList <Reserva> reservas) {
+		for(int i = 0; i < reservas.size(); i++) {
+			for(int j=0; j < reservas.get(i).getQuantidadeHospedes(); j++) {
+				if(codigo == reservas.get(i).getResponsavel().getCodigo()) {
+					return true;
+				}
 			}
+			
 		}
 		return false;
 	}
@@ -64,15 +57,15 @@ public class Hospedagem {
 	 * @param codigo
 	 * @param dataEntrada
 	 * @param dataSaida
-	 * @param 
+	 * @param hospede
 	 * @param aposento
 	 * @param conta
 	 */
-	public Hospedagem(int codigo, Date dataEntrada, Date dataSaida, ArrayList <Hospede> hospede , Aposento aposento, Conta conta) {
+	public Reserva(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta) {
 		this.codigo = codigo;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.hospede = hospede;
+		this.hospedes.add(hospede);
 		this.aposento = aposento;
 		this.conta = conta;
 		
@@ -95,8 +88,11 @@ public class Hospedagem {
 	public void setDataSaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
-	public ArrayList <Hospede> getHospede() {
-		return hospede;
+	public ArrayList<Hospede> getHospedes() {
+		return hospedes;
+	}	
+	public void setHospedes(ArrayList<Hospede> hospedes) {
+		this.hospedes = hospedes;
 	}
 	public Aposento getAposento() {
 		return aposento;
@@ -111,6 +107,23 @@ public class Hospedagem {
 		this.conta = conta;
 	}
 	
+	public Hospede getResponsavel(ArrayList<Hospede> hospedes) {
+		for(int i=0; i < hospedes.size(); i++) {
+			if(hospedes.get(i).isResponsavel() == true) {
+				setResponsavel(hospedes.get(i));
+			}
+		}
+		return responsavel;
+	}
+	public Hospede getResponsavel() {
+		return responsavel;
+	}
 	
+	public void setResponsavel(Hospede responsavel) {
+		this.responsavel = responsavel;
+	}
 	
+	public int getQuantidadeHospedes() {
+		return hospedes.size();
+	}
 }
