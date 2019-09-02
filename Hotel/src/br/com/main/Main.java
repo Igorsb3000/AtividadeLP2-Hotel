@@ -1,138 +1,170 @@
-package br.com.menu;
-import java.text.SimpleDateFormat;
+package br.com.main;
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.ParseException;
 import java.util.Random;
 import java.util.Scanner;
 
-import br.com.clientes.Consumo;
-import br.com.clientes.Conta;
-import br.com.clientes.Hospede;
+import br.com.funcionarios.Camareiro;
+import br.com.funcionarios.Recepcionista;
 import br.com.hotel.Aposento;
 import br.com.hotel.Reserva;
 import br.com.hotel.Hotel;
+import br.com.hotel.ServicoDeQuarto;
+import br.com.menu.Cadastro;
+import br.com.menu.ListarConsumos;
+import br.com.menu.ListarHospedes;
+import br.com.menu.PagarConta;
+import br.com.menu.Pedido;
+import br.com.menu.ProcurarHospede;
+
+import java.text.ParseException; 
 /**
  * 
  * @author Igor Silva & Savio Silva
  *
  */
-public class Cadastro {
-	private static Scanner ler;
+public class Main {
 	/**
 	 * 
-	 * @param aposentos_disponiveis
-	 * @param hotel
-	 * @param reservas
-	 * @return
+	 * @param args
 	 * @throws ParseException
 	 */
-	public static int cadastro(ArrayList <Aposento> aposentos_disponiveis, Hotel hotel, ArrayList <Reserva> reservas) throws ParseException {
-		ler = new Scanner(System.in);
-		double valor_conta = 0;
-		boolean pago_conta = false, responsavel = false;
-		boolean check = true;
-		Random rnd = new Random();
-		int codigo = rnd.nextInt(100)+1;  //Codigo unico de cada hospede
-		int codigo_hospede, codigo_conta, opcao;
-		Date dataEntrada, dataSaida;
-		String nome, CPF, RG, telefone, resposta;
+	public static void main(String[] args) throws ParseException {
+		ArrayList <Reserva> reservas = new ArrayList<Reserva>();
+		
+		//Camareiros
+		ArrayList <Camareiro> camareiros = new ArrayList<Camareiro>();
+		Camareiro camareiro_1 = new Camareiro("123", "Luiz Pereira", 998.00 );
+		Camareiro camareiro_2 = new Camareiro("124", "Luiza Costa", 998.00 );
+		Camareiro camareiro_3 = new Camareiro("125", "Laura Souza", 998.00 );
+		camareiros.add(camareiro_1);
+		camareiros.add(camareiro_2);
+		camareiros.add(camareiro_3);
+		
+		//Recepcionistas
+		ArrayList <Recepcionista> recepcionistas = new ArrayList<Recepcionista>();
+		
+		ArrayList <String> IdiomaQueDomina = new ArrayList<String>();
+		IdiomaQueDomina.add("Ingles");
+		IdiomaQueDomina.add("Espanhol");
+		Recepcionista recepcionista_1 = new Recepcionista("1234", "Carla Silva", 1200.00, IdiomaQueDomina);
+		recepcionistas.add(recepcionista_1);
+		
+		IdiomaQueDomina = new ArrayList<String>();
+		IdiomaQueDomina.add("Ingles");
+		IdiomaQueDomina.add("Frances");
+		IdiomaQueDomina.add("Italiano");
+		Recepcionista recepcionista_2 = new Recepcionista("1245", "Silvia Bittencout", 1200.00, IdiomaQueDomina);
+		recepcionistas.add(recepcionista_2);
+		
+		//Aposentos do Hotel
+		ArrayList <Aposento> aposentos_disponiveis = new ArrayList<Aposento>();
+		Aposento aposento_presidencial = new Aposento(123110, 50000, "Aposento de alto luxo equipado com o melhor da tecnologia e da sofisticacao", 110, 5);
+		Aposento aposento_luxuoso = new Aposento(123103, 10000, "Aposento de alto luxo com vista privilegiada", 103, 4);
+		Aposento aposento_mediano = new Aposento(12389, 1200, "Aposento confortavel com TV e frigobar", 89, 3);
+		Aposento aposento_simples = new Aposento(12345, 600, "Aposento simples com TV e Wifi", 45, 2);
+		aposentos_disponiveis.add(aposento_presidencial);
+		aposentos_disponiveis.add(aposento_luxuoso);
+		aposentos_disponiveis.add(aposento_mediano);
+		aposentos_disponiveis.add(aposento_simples);
 		
 		
-		System.out.println("Deseja se hospedar no " + hotel.getNome() + " ? s/n ");
-		resposta = ler.nextLine();
-		if(resposta.contentEquals("s")) {
-			do{
-				check = Reserva.checagemDeCodigo(codigo, reservas);
-				codigo = rnd.nextInt(100)+1;
-			}while(!check);
-			
-			String dataRecebida;
-			System.out.println("Insira a data de entrada(dd/mm/yyyy): ");
-			dataRecebida = ler.nextLine();
-			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-			dataEntrada = formato.parse(dataRecebida);
-			//System.out.println("Data de entrada: " + formato.format(dataEntrada));
-			System.out.println();
-			
-			System.out.println("Insira a data de saida(dd/mm/yyyy): ");
-			dataRecebida = ler.nextLine();
-			formato = new SimpleDateFormat("dd/MM/yyyy");
-			dataSaida = formato.parse(dataRecebida);
-			//System.out.println("Data de saida: " + formato.format(dataSaida));
-			
-			codigo_hospede = codigo;
-			System.out.println();
-			System.out.println("Insira seu nome: ");
-			nome = ler.nextLine();
-			System.out.println();
-			System.out.println("Insira seu CPF sem espaco: ");
-			CPF = ler.nextLine();
-			System.out.println();
-			System.out.println("Insira seu RG sem espaco: ");
-			RG = ler.nextLine();
-			System.out.println();
-			System.out.println("Insira seu telefone (DD) 9 9999-9999: ");
-			telefone = ler.nextLine();
-			
-			Hospede hospede = new Hospede(codigo_hospede, nome, CPF, RG, telefone, responsavel);
-			
-			System.out.println();
-			System.out.println("***Aposentos Disponiveis*** ");
-			System.out.println();
-			for(int i = 0; i < aposentos_disponiveis.size(); i++) {
-				int j = i+1;
-				System.out.println("Aposento " + j + ": ");
-				System.out.println("Desricao: " + aposentos_disponiveis.get(i).getDescricao());
-				System.out.println("Numero: " + aposentos_disponiveis.get(i).getNumero());
-				System.out.println("Valor da diaria: R$" + aposentos_disponiveis.get(i).getValor());
-				System.out.println();
-			}
-			
-			System.out.println("Insira o numero do aposento que deseja: ");
-			opcao = ler.nextInt();
-			
-			Aposento aposento_escolhido = new Aposento();
-			aposento_escolhido = aposentos_disponiveis.get(opcao-1);
-			
-			int controle = 0;
-			int quantidadeReservas = 0;
-			
-			for(int i=0; i < reservas.size(); i++) {
-				if(reservas.get(i).getAposento().getCodigo() == opcao-1) {
-					quantidadeReservas++;
-					//Compara se a data de entrada e saída são menores que a data de entrada
-					if(dataEntrada.compareTo(reservas.get(i).getDataEntrada()) < 0) {
-						if(dataSaida.compareTo(reservas.get(i).getDataEntrada()) < 0) {
-							controle++;
-						}
-					}
-					//Compara se a data de entrada e saída são maiores que a data de saída
-					if(dataEntrada.compareTo(reservas.get(i).getDataSaida()) > 0) {
-						controle++;
-					}	
-				}
-			}
-			
-			if(controle != quantidadeReservas) {
-				System.out.println("O  aposento não esta disponível para esse período!");
-				return -1;
-			}
-			
-			//Remove o aposento escolhido da lista de aposentos disponiveis
-			//aposentos_disponiveis.remove(opcao - 1); 
-			
-			//Vai criar uma conta para cada hospede ou só para o hospede responsável?
-			codigo_conta = codigo;
-			
-			ArrayList<Consumo> consumos = new ArrayList<Consumo>();
-			
-			Conta conta = new Conta(codigo_conta, valor_conta, pago_conta, consumos);
-			
-			Reserva reserva = new Reserva(codigo, dataEntrada, dataSaida, hospede, aposento_escolhido, conta);
-			reservas.add(reserva);		
-		}
-		return codigo;
-	}
+		Hotel hotel = new Hotel("Luxus Hotel", "123456789", reservas, recepcionistas, camareiros);
 
+		int op_menu;
+		Scanner ler = new Scanner(System.in);
+			
+		do{
+			System.out.println();
+			System.out.println(" ___________________ ");
+			System.out.println("|  ---------------  |");
+			System.out.println("|  MENU  PRINCIPAL  |");
+			System.out.println("|  ---------------  |");
+			System.out.println("|___________________|");
+			System.out.println();
+			System.out.println("0 - Sair");
+			System.out.println("1 - Cadastrar novo hospede");
+			System.out.println("2 - Listar hospedes");
+			System.out.println("3 - Procurar hospede pelo codigo");
+			System.out.println("4 - Fazer pedido para sua conta");
+			System.out.println("5 - Listar todos os consumos");
+			System.out.println("6 - Pagar conta");
+			System.out.println("7 - Realizar servico de quarto");
+			System.out.println("8 - Agendar servico de quarto");
+			op_menu = ler.nextInt();
+		
+			switch(op_menu) {
+			case 1:
+				int codigo = Cadastro.cadastro(aposentos_disponiveis, hotel, reservas);
+				if(codigo == -1) {
+					System.out.println("Erro ao cadastrar o hospede");
+					break;
+				}
+				System.out.println();
+				System.out.println(">>> Seu Codigo eh: " + codigo +" <<<");
+				break;
+			case 2:
+				System.out.println("***Hospedes do " + hotel.getNome() + "***");
+				ListarHospedes.listar(reservas);
+		   		break;
+			case 3:
+				System.out.println("Digite o codigo do hospede: ");
+		   		ProcurarHospede.procurarHospede(reservas);
+				break;
+			case 4:
+				Pedido.pedido(reservas);
+				break;
+			case 5:
+				ListarConsumos.listarConsumos(reservas);
+				break;
+			case 6:
+				PagarConta.pagarConta(reservas);
+				break;
+			case 7:
+				boolean check;
+				Date dataAtual = new Date();
+				System.out.println("Insira o codigo do hospede: ");
+				codigo = ler.nextInt();
+				check = Reserva. checarExistencia(codigo, reservas);
+				if(check) {
+					Random rnd = new Random();
+					int aleatorio = camareiros.size();
+					for(int i = 0; i< reservas.size(); i++) {
+						if(reservas.get(i).getResponsavel().getCodigo() == codigo) {
+							ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataAtual, reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)), false);
+							ServicoDeQuarto.realizarServicoQuarto(reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)), servicoDeQuarto);
+						}	
+					}
+				}else {
+					System.out.println("Hospede nao existe!");
+				}
+			
+				break;
+			case 8:
+				System.out.println("Insira o codigo do hospede: ");
+				codigo = ler.nextInt();
+				check = Reserva. checarExistencia(codigo, reservas);
+				if(check) {
+					Random rnd = new Random();
+					int aleatorio = camareiros.size();
+					for(int i = 0; i< reservas.size(); i++) {
+						if(reservas.get(i).getResponsavel().getCodigo() == codigo) {
+							ServicoDeQuarto.agendarServicoQuarto(reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)));
+						}	
+					}
+				}else {
+					System.out.println("Hospede nao existe!");
+				}
+				
+				break;
+			default:
+				System.out.println();
+				System.out.println("Sistema finalizado com sucesso!");
+				break;
+			}
+		}while(op_menu != 0);
+		
+		System.out.println();
+		ler.close();
+	}
 }
