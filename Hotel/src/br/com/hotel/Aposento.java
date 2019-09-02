@@ -1,4 +1,9 @@
 package br.com.hotel;
+
+import java.util.ArrayList;
+
+import br.com.clientes.Hospede;
+
 /**
  * 
  * @author Igor Silva & Savio Silva
@@ -57,5 +62,11 @@ public class Aposento {
 		this.capacidade = capacidade;
 	}
 	
+	public boolean checkCapacidade(ArrayList<Hospede> hospedes) {
+		if(hospedes.size() < getCapacidade()) {
+			return true;
+		}
+		return false;
+	}
 
 }
