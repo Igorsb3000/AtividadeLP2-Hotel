@@ -11,7 +11,8 @@ public class Hospede {
 	private String CPF;
 	private String RG;
 	private String telefone;
-	private boolean responsavel;
+	private boolean responsavel;	
+
 	/**
 	 * 
 	 * @param codigo
@@ -31,32 +32,35 @@ public class Hospede {
 	}
 
 	public int getCodigo() {
-		return this.codigo;
+		return codigo;
 	}
-	public String getNome() {
-		return this.nome;
-	}
-	public String getCPF() {
-		return this.CPF;
-	}
-	public String getRG() {
-		return this.RG;
-	}
-	public String getTelefone() {
-		return this.telefone;
-	}
-	
-	public void setcodigo(int codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setCPF(String CPF) {
-		this.CPF = CPF;
+
+	public String getCPF() {
+		return CPF;
 	}
-	public void setRG(String RG) {
-		this.RG = RG;
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+
+	public String getRG() {
+		return RG;
+	}
+	public void setRG(String rG) {
+		RG = rG;
+	}
+
+	public String getTelefone() {
+		return telefone;
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
@@ -65,10 +69,8 @@ public class Hospede {
 	public boolean isResponsavel() {
 		return responsavel;
 	}
-
 	public void setResponsavel(boolean responsavel) {
 		this.responsavel = responsavel;
 	}
-	
 
 }
