@@ -37,12 +37,16 @@ public class Hospede {
 	}
 	
 	public static boolean CheckCPF(String CPF, ArrayList<Reserva> reservas) {
-		for(int i = 0; i < reservas.size(); i++) {
-			if(reservas.get(i).getHospedes().get(i).getCPF().contentEquals(CPF)) {
-				return true;
+		for(int i = 0; i<reservas.size(); i++) {
+			for(int j = 0; j < reservas.get(i).getHospedes().size(); j++) {
+				if(reservas.get(i).getHospedes().get(j).getCPF().contentEquals(CPF)) {
+					return true;
+				}
 			}
+			
 		}
 		return false;
+		
 	}
 
 	public int getCodigo() {

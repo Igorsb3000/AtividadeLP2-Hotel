@@ -19,6 +19,7 @@ import br.com.hotel.Hotel;
  */
 public class Cadastro {
 	private static Scanner ler;
+	private static ArrayList<Hospede> hospedes;
 	/**
 	 * 
 	 * @param aposentos_disponiveis
@@ -38,7 +39,7 @@ public class Cadastro {
 		Date dataEntrada, dataSaida;
 		String nome, CPF, RG, telefone, resposta;
 		
-		
+		System.out.println("reserva.size(): "+ reservas.size());
 		System.out.println("Deseja se hospedar no " + hotel.getNome() + " ? s/n ");
 		resposta = ler.nextLine();
 		if(resposta.contentEquals("s")) {
@@ -81,17 +82,17 @@ public class Cadastro {
 			System.out.println("Insira a quantidade de pessoas para essa reserva(nao incluindo vc): ");
 			quant_hospedes = ler.nextInt();
 			quant_hospedes = quant_hospedes+1;
-			System.out.println("quant hospdes: " +quant_hospedes);
+			//System.out.println("quant hospdes: " +quant_hospedes);
 			
 			System.out.println();
-			System.out.println("***Aposentos Disponiveis*** ");
+			System.out.println("***Aposentos Disponiveis***");
 			System.out.println();
 			for(int i = 0; i < aposentos_disponiveis.size(); i++) {
 				int j = i+1;
 				System.out.println("Aposento " + j + ": ");
 				System.out.println("Desricao: " + aposentos_disponiveis.get(i).getDescricao());
 				System.out.println("Capacidade Max.: " + aposentos_disponiveis.get(i).getCapacidade());
-				System.out.println("Ocupacao: " + aposentos_disponiveis.get(i).getOcupacao() + "/" + aposentos_disponiveis.get(i).getCapacidade() );
+				System.out.println("Ocupacao: " + aposentos_disponiveis.get(i).getOcupacao() + "/" + aposentos_disponiveis.get(i).getCapacidade());
 				System.out.println("Numero: " + aposentos_disponiveis.get(i).getNumero());
 				System.out.println("Valor da diaria: R$" + aposentos_disponiveis.get(i).getValor());
 				System.out.println();
@@ -99,23 +100,30 @@ public class Cadastro {
 			do {
 				System.out.println("Insira o numero do aposento que deseja: ");
 				opcao = ler.nextInt();
-				System.out.println("opcao: " + opcao);
-				System.out.println("aposento escolhido: "+aposentos_disponiveis.get(opcao-1).getValor());
+				//System.out.println("opcao: " + opcao);
+				//System.out.println("aposento escolhido: "+aposentos_disponiveis.get(opcao-1).getValor());
 			}while(quant_hospedes > aposentos_disponiveis.get(opcao-1).getCapacidade());
 			
+			System.out.println("teste 1");
 			//Se for o primeiro a se hospedar entao ele sera o responsavel
 			if(aposentos_disponiveis.get(opcao-1).getOcupacao() == 0) {
 				responsavel = true;
 			}
+			System.out.println("teste 2");
 			aposentos_disponiveis.get(opcao-1).setOcupacao(quant_hospedes);
 			
+			System.out.println("teste 3");
 			//Remove o aposento escolhido da lista de aposentos disponiveis se a capacidade for preenchida
 			if(aposentos_disponiveis.get(opcao-1).getOcupacao() == aposentos_disponiveis.get(opcao-1).getCapacidade()) {
 				aposentos_disponiveis.remove(opcao - 1);
 			}
 			
+			//Aposento aposento_escolhido = new Aposento();
+			System.out.println("teste 4");
 			Aposento aposento_escolhido;
 			aposento_escolhido = aposentos_disponiveis.get(opcao-1);
+		
+			System.out.println("teste 5");
 			
 			Hospede hospede = new Hospede(codigo_hospede, nome, CPF, RG, telefone, responsavel);
 			
@@ -149,8 +157,12 @@ public class Cadastro {
 			ArrayList<Consumo> consumos = new ArrayList<Consumo>();
 			
 			Conta conta = new Conta(codigo_conta, valor_conta, pago_conta, consumos);
-			
-			Reserva reserva = new Reserva(codigo, dataEntrada, dataSaida, hospede, aposento_escolhido, conta, quant_hospedes);
+			//, 
+			// 
+			hospedes.add(hospede);
+			ArrayList<Hospede> hospedes2 = new ArrayList<Hospede>();
+			hospedes2 = hospedes;
+			Reserva reserva = new Reserva(codigo, dataEntrada, dataSaida, aposento_escolhido, hospedes2, conta, quant_hospedes);
 			reservas.add(reserva);		
 		}
 		return codigo;
