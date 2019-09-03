@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import br.com.hotel.Reserva;
 
 public class ProcurarHospede {
-	
+	/**
+	 * 
+	 * @param codigo
+	 * @param reservas
+	 */
 	public static void procurarHospede(int codigo, ArrayList<Reserva> reservas) {
 		for(int i = 0; i<reservas.size(); i++) {
 			if(reservas.get(i).getHospedes().get(i).getCodigo() == codigo) {

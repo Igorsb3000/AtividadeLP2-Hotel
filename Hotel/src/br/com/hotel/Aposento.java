@@ -67,8 +67,8 @@ public class Aposento {
 	public int getOcupacao() {
 		return ocupacao;
 	}
-	public void setOcupacao(int ocupacao) {
-		this.ocupacao = ocupacao;
+	public void setOcupacao(int quant_hospedes) {
+		this.ocupacao = quant_hospedes;
 	}
 	/**
 	 * 

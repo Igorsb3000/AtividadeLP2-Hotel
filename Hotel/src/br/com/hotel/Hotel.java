@@ -18,7 +18,7 @@ public class Hotel {
      * 
      * @param nome
      * @param cnpj
-     * @param hospedagens
+     * @param reservas
      * @param recepcionistas
      * @param camareiros
      */
