@@ -68,7 +68,6 @@ public class Main {
 		aposentos_disponiveis.add(aposento_mediano);
 		aposentos_disponiveis.add(aposento_simples);
 		
-		
 		Hotel hotel = new Hotel("Luxus Hotel", "123456789", reservas, recepcionistas, camareiros);
 
 		int op_menu;
@@ -95,8 +94,9 @@ public class Main {
 		
 			switch(op_menu) {
 			case 1:
-				int codigo = Cadastro.cadastro(aposentos_disponiveis, hotel, reservas);
-				if(codigo == -1) {
+				int codigo = 0;
+				codigo = Cadastro.cadastro(aposentos_disponiveis, hotel, reservas);
+				if(codigo == 0) {
 					System.out.println("Erro ao cadastrar o hospede");
 					break;
 				}
@@ -109,7 +109,8 @@ public class Main {
 		   		break;
 			case 3:
 				System.out.println("Digite o codigo do hospede: ");
-		   		ProcurarHospede.procurarHospede(reservas);
+				codigo = ler.nextInt();
+		   		ProcurarHospede.procurarHospede(codigo, reservas);
 				break;
 			case 4:
 				Pedido.pedido(reservas);
@@ -118,7 +119,7 @@ public class Main {
 				ListarConsumos.listarConsumos(reservas);
 				break;
 			case 6:
-				PagarConta.pagarConta(reservas);
+				//PagarConta.pagarConta(reservas);
 				break;
 			case 7:
 				boolean check;
@@ -131,8 +132,8 @@ public class Main {
 					int aleatorio = camareiros.size();
 					for(int i = 0; i< reservas.size(); i++) {
 						if(reservas.get(i).getResponsavel().getCodigo() == codigo) {
-							ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataAtual, reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)), false);
-							ServicoDeQuarto.realizarServicoQuarto(reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)), servicoDeQuarto);
+							//ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataAtual, reservas.get(i).getHospedes().get(i), camareiros.get(rnd.nextInt(aleatorio)), false);
+							//ServicoDeQuarto.realizarServicoQuarto(reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)), servicoDeQuarto);
 						}	
 					}
 				}else {
@@ -149,7 +150,7 @@ public class Main {
 					int aleatorio = camareiros.size();
 					for(int i = 0; i< reservas.size(); i++) {
 						if(reservas.get(i).getResponsavel().getCodigo() == codigo) {
-							ServicoDeQuarto.agendarServicoQuarto(reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)));
+							//ServicoDeQuarto.agendarServicoQuarto(reservas.get(i), camareiros.get(rnd.nextInt(aleatorio)));
 						}	
 					}
 				}else {

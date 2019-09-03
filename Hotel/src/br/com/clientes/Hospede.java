@@ -1,4 +1,9 @@
 package br.com.clientes;
+
+import java.util.ArrayList;
+
+import br.com.hotel.Reserva;
+
 /**
  * 
  * @author Igor Silva & Savio Silva
@@ -29,6 +34,15 @@ public class Hospede {
 		this.RG = RG;
 		this.telefone = telefone;
 		this.responsavel = responsavel;
+	}
+	
+	public static boolean CheckCPF(String CPF, ArrayList<Reserva> reservas) {
+		for(int i = 0; i < reservas.size(); i++) {
+			if(reservas.get(i).getHospedes().get(i).getCPF().contentEquals(CPF)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int getCodigo() {

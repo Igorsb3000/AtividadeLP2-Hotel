@@ -11,7 +11,7 @@ import br.com.funcionarios.Recepcionista;
 public class Hotel {
     private String nome;
     private String cnpj;
-    private ArrayList<Hospedagem> hospedagens;
+    private ArrayList<Reserva> reservas;
     private ArrayList<Recepcionista> recepcionistas;
     private ArrayList<Camareiro> camareiros;
     /**
@@ -22,10 +22,10 @@ public class Hotel {
      * @param recepcionistas
      * @param camareiros
      */
-    public Hotel(String nome, String cnpj, ArrayList<Hospedagem> hospedagens, ArrayList<Recepcionista> recepcionistas, ArrayList<Camareiro> camareiros) {
+    public Hotel(String nome, String cnpj, ArrayList<Reserva> reservas, ArrayList<Recepcionista> recepcionistas, ArrayList<Camareiro> camareiros) {
     	this.nome = nome;
     	this.cnpj = cnpj;
-    	this.hospedagens = hospedagens;
+    	this.reservas = reservas;
     	this.recepcionistas = recepcionistas;
     	this.camareiros = camareiros;
     }
@@ -41,11 +41,11 @@ public class Hotel {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-    public ArrayList<Hospedagem> getHospedagens() {
-        return hospedagens;
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
     }
-    public void setHospedagens(ArrayList<Hospedagem> hospedagens) {
-        this.hospedagens = hospedagens;
+    public void setHospedagens(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
     }
     public ArrayList<Recepcionista> getRecepcionistas() {
         return recepcionistas;

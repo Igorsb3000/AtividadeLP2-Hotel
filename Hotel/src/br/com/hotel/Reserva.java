@@ -10,7 +10,7 @@ import br.com.clientes.Hospede;
  * @author Igor Silva & Savio Silva
  *
  */
-public class Reserva {
+public class Reserva { //antiga class Hospedagem
 	private int codigo;
 	private Date dataEntrada;
 	private Date dataSaida;
@@ -18,6 +18,7 @@ public class Reserva {
 	private Hospede responsavel;
 	private Aposento aposento;
 	private Conta conta;
+	private int quantidadeHospedes;
 	
 	//Checar pra saber se ja existe o codigo, se existir retorna false
 	/**
@@ -43,11 +44,15 @@ public class Reserva {
 	 */
 	public static boolean checarExistencia(int codigo, ArrayList <Reserva> reservas) {
 		for(int i = 0; i < reservas.size(); i++) {
-			for(int j=0; j < reservas.get(i).getQuantidadeHospedes(); j++) {
-				if(codigo == reservas.get(i).getResponsavel().getCodigo()) {
-					return true;
+			//for(int j=0; j < reservas.get(i).getQuantidadeHospedes(); j++) {
+				if(codigo == reservas.get(i).getHospedes().get(i).getCodigo()) {
+					//if(reservas.get(i).getHospedes().get(i).isResponsavel()) {
+						return true;
+					//}
+						//getResponsavel().getCodigo()) {
+					
 				}
-			}
+			//}
 			
 		}
 		return false;
@@ -61,13 +66,14 @@ public class Reserva {
 	 * @param aposento
 	 * @param conta
 	 */
-	public Reserva(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta) {
+	public Reserva(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta, int quantidadeHospedes) {
 		this.codigo = codigo;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
 		this.hospedes.add(hospede);
 		this.aposento = aposento;
 		this.conta = conta;
+		this.quantidadeHospedes = quantidadeHospedes;
 		
 	}
 	public int getCodigo() {

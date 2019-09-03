@@ -14,7 +14,7 @@ import br.com.funcionarios.Camareiro;
  */
 public class ServicoDeQuarto {
 	private Date data;
-	private Hospedagem hospedagem;
+	private Hospede hospede;
 	private Camareiro camareiro;
 	private boolean realizado;
 	private static Scanner ler;
@@ -25,9 +25,9 @@ public class ServicoDeQuarto {
 	 * @param camareiro
 	 * @param realizado
 	 */
-	public ServicoDeQuarto(Date data, Hospedagem hospedagem, Camareiro camareiro, boolean realizado) {
+	public ServicoDeQuarto(Date data, Hospede hospede, Camareiro camareiro, boolean realizado) {
 		this.data = data;
-		this.hospedagem = hospedagem;
+		this.hospede = hospede;
 		this.camareiro = camareiro;
 		this.realizado = realizado;
 	}
@@ -38,12 +38,7 @@ public class ServicoDeQuarto {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public Hospedagem getHospedagem() {
-		return hospedagem;
-	}
-	public void setHospedagem(Hospedagem hospedagem) {
-		this.hospedagem = hospedagem;
-	}
+
 	public Camareiro getCamareiro() {
 		return camareiro;
 	}

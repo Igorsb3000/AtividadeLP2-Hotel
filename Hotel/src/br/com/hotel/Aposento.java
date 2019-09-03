@@ -15,8 +15,10 @@ public class Aposento {
 	private String descricao;
 	private int numero;
 	private int capacidade;
+	private int ocupacao = 0;
 	
-	public Aposento(){	
+	public Aposento() {
+		
 	}
 	/**
 	 * 
@@ -62,6 +64,17 @@ public class Aposento {
 		this.capacidade = capacidade;
 	}
 	
+	public int getOcupacao() {
+		return ocupacao;
+	}
+	public void setOcupacao(int ocupacao) {
+		this.ocupacao = ocupacao;
+	}
+	/**
+	 * 
+	 * @param hospedes
+	 * @return
+	 */
 	public boolean checkCapacidade(ArrayList<Hospede> hospedes) {
 		if(hospedes.size() < getCapacidade()) {
 			return true;

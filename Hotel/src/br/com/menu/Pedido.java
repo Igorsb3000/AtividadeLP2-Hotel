@@ -1,9 +1,9 @@
 package br.com.menu;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import br.com.clientes.Consumo;
-import br.com.hotel.Hospedagem;
+import br.com.hotel.Reserva;
+
 /**
  * 
  * @author Igor Silva & Savio Silva
@@ -15,10 +15,10 @@ public class Pedido {
 	 * 
 	 * @param hospedagens
 	 */
-	public static void pedido(ArrayList <Hospedagem> hospedagens) {
+	public static void pedido(ArrayList <Reserva> reservas) {
     	ler = new Scanner(System.in);
     	Consumo consumo;
-    	int opcao, codigo_produto = 0, codigo, quantidade, cont = 0;
+    	int opcao, codigo_produto = 0, codigo, quantidade;
     	double valor_unitario = 0;
     	String resposta, descricao = null;
     	boolean check = false;
@@ -69,19 +69,20 @@ public class Pedido {
     		codigo = ler.nextInt();
  
     		//Checando para saber se o codigo existe
-    		check = Hospedagem. checarExistencia(codigo, hospedagens);
+    		check = Reserva.checarExistencia(codigo, reservas);
     		
     		if(check) {
 	    		consumo = new Consumo(codigo_produto, descricao, quantidade, valor_unitario);
 	        	
-	    		for(int i = 0; i < hospedagens.size(); i++) {
-	    			if(hospedagens.get(i).getHospede().getCodigo() == codigo) {
-	    				hospedagens.get(i).getConta().getConsumos().add(consumo);
+	    		for(int i = 0; i < reservas.size(); i++) {
+	    			if(reservas.get(i).getHospedes().get(i).isResponsavel()) {
+	    				//if(reservas.get(i).getHospedes().get(i).isResponsavel())
+	    				reservas.get(i).getConta().getConsumos().add(consumo);
 	    			}
 	    		}
 	    		
     		}else {
-    			System.out.println("Hospede nao existe, tente novamente!");
+    			System.out.println("Hospede nao eh o responsavel, tente novamente!");
     			return;
     		}
     		
