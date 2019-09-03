@@ -66,11 +66,11 @@ public class Reserva { //antiga class Hospedagem
 	 * @param aposento
 	 * @param conta
 	 */
-	public Reserva(int codigo, Date dataEntrada, Date dataSaida, Hospede hospede, Aposento aposento, Conta conta, int quantidadeHospedes) {
+	public Reserva(int codigo, Date dataEntrada, Date dataSaida, ArrayList<Hospede> hospedes, Aposento aposento, Conta conta, int quantidadeHospedes) {
 		this.codigo = codigo;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.hospedes.add(hospede);
+		this.hospedes = hospedes;
 		this.aposento = aposento;
 		this.conta = conta;
 		this.quantidadeHospedes = quantidadeHospedes;
@@ -99,6 +99,9 @@ public class Reserva { //antiga class Hospedagem
 	}	
 	public void setHospedes(ArrayList<Hospede> hospedes) {
 		this.hospedes = hospedes;
+	}
+	public void setHospede(Hospede hospede) {
+		this.hospedes.add(hospede);
 	}
 	public Aposento getAposento() {
 		return aposento;

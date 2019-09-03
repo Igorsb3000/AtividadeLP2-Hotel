@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 //import java.util.ArrayList;
 
+import br.com.clientes.Hospede;
 import br.com.funcionarios.Camareiro;
 /**
  * 
@@ -21,13 +22,13 @@ public class ServicoDeQuarto {
 	/**
 	 * 
 	 * @param data
-	 * @param hospedagem
+	 * @param Reserva
 	 * @param camareiro
 	 * @param realizado
 	 */
-	public ServicoDeQuarto(Date data, Hospede hospede, Camareiro camareiro, boolean realizado) {
+	public ServicoDeQuarto(Date data, Reserva reserva, Camareiro camareiro, boolean realizado) {
 		this.data = data;
-		this.hospede = hospede;
+		this.setHospede(hospede);
 		this.camareiro = camareiro;
 		this.realizado = realizado;
 	}
@@ -53,22 +54,22 @@ public class ServicoDeQuarto {
 	}
 	
 	/**
-	 * Os parametros dos tipos Hospedagem e Camareiro indicam relacao de DEPENDENCIA entre
-	 * ServicoDeQuarto -> Hospedagem & ServicoDeQuarto -> Camareiro.
+	 * Os parametros dos tipos Reserva e Camareiro indicam relacao de DEPENDENCIA entre
+	 * ServicoDeQuarto -> Reserva & ServicoDeQuarto -> Camareiro.
 	 */
 	/**
 	 * 
-	 * @param hospedagem
+	 * @param Reserva
 	 * @param camareiro
 	 * @param servicoDeQuarto
 	 */
-	public static void realizarServicoQuarto(Hospedagem hospedagem, Camareiro camareiro, ServicoDeQuarto servicoDeQuarto) {
+	public static void realizarServicoQuarto(Reserva reserva, Camareiro camareiro, ServicoDeQuarto servicoDeQuarto) {
 		LocalDate dataAtual_formatada = LocalDate.now();
 		int contador = 0;
 		
-		if(hospedagem.getDataEntrada().compareTo(servicoDeQuarto.getData()) <= 0) {
+		if(reserva.getDataEntrada().compareTo(servicoDeQuarto.getData()) <= 0) {
 			contador++;
-			if(hospedagem.getDataSaida().compareTo(servicoDeQuarto.getData()) >= 0) {
+			if(reserva.getDataSaida().compareTo(servicoDeQuarto.getData()) >= 0) {
 				contador++;
 				if(contador == 2) {
 					servicoDeQuarto.setRealizado(true);
@@ -80,8 +81,8 @@ public class ServicoDeQuarto {
 						System.out.println("***Servico Realizado***");
 						System.out.println();
 						System.out.println("Data: " + dataAtual_formatada);
-						System.out.println("Aposento: " + hospedagem.getAposento().getNumero());
-						System.out.println("Camareiro(a) responsável: " + camareiro.getNome());
+						System.out.println("Aposento: " + reserva.getAposento().getNumero());
+						System.out.println("Camareiro(a) responsï¿½vel: " + camareiro.getNome());
 						System.out.println();
 						return;
 					}
@@ -94,11 +95,11 @@ public class ServicoDeQuarto {
 	
 	/**
 	 * 
-	 * @param hospedagem
+	 * @param Reserva
 	 * @param camareiro
 	 * @throws ParseException
 	 */
-	public static void agendarServicoQuarto(Hospedagem hospedagem, Camareiro camareiro) throws ParseException {
+	public static void agendarServicoQuarto(Reserva reserva, Camareiro camareiro) throws ParseException {
 		ler = new Scanner(System.in);
 		Date dataAtual = new Date();
 		int contador = 0;
@@ -113,19 +114,19 @@ public class ServicoDeQuarto {
 		dataServico = formato.parse(dataRecebida);
 		dataAtual = formato.parse(dataAtual_string);
 		
-		if(hospedagem.getDataEntrada().compareTo(dataServico) <= 0) {
+		if(reserva.getDataEntrada().compareTo(dataServico) <= 0) {
 			contador++;
-			if(hospedagem.getDataSaida().compareTo(dataServico) >= 0) {
+			if(reserva.getDataSaida().compareTo(dataServico) >= 0) {
 				contador++;
 				if(contador == 2) {
 					System.out.println();
 					System.out.println("Servico agendado com sucesso!");
 					System.out.println();
 					System.out.println("No dia " + formato.format(dataServico)+ " o(a) camareiro(a) " + camareiro.getNome() + " ira ate seu quarto!");
-					ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataServico, hospedagem, camareiro, servicoRealizado);
+					ServicoDeQuarto servicoDeQuarto = new ServicoDeQuarto(dataServico, reserva, camareiro, servicoRealizado);
 
 					if(dataAtual.compareTo(dataServico) == 0) {
-						ServicoDeQuarto.realizarServicoQuarto(hospedagem, camareiro, servicoDeQuarto);
+						ServicoDeQuarto.realizarServicoQuarto(reserva, camareiro, servicoDeQuarto);
 					}
 					
 				}
@@ -133,6 +134,14 @@ public class ServicoDeQuarto {
 		}else {
 			System.out.println("Data invalida!");
 		}
+	}
+
+	public Hospede getHospede() {
+		return hospede;
+	}
+
+	public void setHospede(Hospede hospede) {
+		this.hospede = hospede;
 	}
 	
 
